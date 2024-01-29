@@ -1,6 +1,11 @@
+import path from 'path';
+import { fork } from 'child_process';
+
+const childModule = path.join('src', 'cp', 'files', 'script.js');
+
 const spawnChildProcess = async (args) => {
-    // Write your code here
+   fork(childModule, args);
 };
 
 // Put your arguments in function call to test this functionality
-spawnChildProcess( /* [someArgument1, someArgument2, ...] */);
+spawnChildProcess([1, 'a', 2, 'b']);
