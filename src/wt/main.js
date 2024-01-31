@@ -1,9 +1,12 @@
 import { Worker } from 'worker_threads';
 import path from 'path';
 import { cpus } from 'os';
+import { fileURLToPath } from 'node:url';
 
 const START_NUM = 10;
-const workerScript = path.join('src', 'wt', 'worker.js');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const workerScript = path.join(__dirname, 'worker.js');
 
 const fibonacciWorkerService = (number) => new Promise(resolve => {
     const worker = new Worker(workerScript, { workerData: number });
